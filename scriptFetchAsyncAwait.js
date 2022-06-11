@@ -10,11 +10,39 @@ const addNotes = (notas = []) => {
 }
 
 const getNotes = async () => {
-    
+    try {
+        const response = await fetch("https://fiap-notes-api.herokuapp.com/notes");
+        const json = await response.json();
+
+        addNotes(json);
+        // const resolves = await Promise.all([new Promise(), new Promise]);
+
+    } catch (error) {
+        if (err.response) {
+            return alert("Bad Request")
+        }
+        alert("Verifique a internet")
+    } finally {
+        console.log("finalizou");
+    }
 }
 
 const createNote = async (event) => {
-    
+    event.preventDefault();
+
+    const body = JSON.stringify({ text: newNote.value });
+    const response = await fetch("https://fiap-notes-api.herokuapp.com/notes", {
+        method: "POST",
+        body,
+        headers: {
+            "Content-type": "application/json",
+        }
+    })
+
+    const json = await response.json();
+
+    addNotes([json]);
+    event.target.reset();
 }
 
 getNotes();

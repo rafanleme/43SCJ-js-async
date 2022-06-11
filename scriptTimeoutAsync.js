@@ -3,12 +3,30 @@ function printConsole(){
 }
 
 function primeiraFuncao(){
-    setTimeout(printConsole, 500);
+    setTimeout(printConsole, 0);
 }
 
 function segundaFuncao(){
-    console.log("Executou a segunda função");
+    for(let i = 0; i < 5000 ; i++ ){
+
+        console.log("Executou a segunda função");
+    }
 }
 
 primeiraFuncao();
 segundaFuncao();
+
+function teste(cb){
+    const teste = "Rafael";
+    cb(teste);
+}
+
+function meuCallBack(param)
+ {
+    alert("olá" + param);
+
+}
+
+teste(meuCallBack);
+
+teste(() => alert('ola'));
